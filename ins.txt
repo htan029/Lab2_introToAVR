@@ -1,0 +1,38 @@
+commands:
+without gdb:
+    Compile the program
+    $ avr-gcc -mmcu=atmega1284 -I/usr/csshare/pkgs/simavr/ -Iheader/ -D_SIMULATE_ -Wall -Wl,--undefined=_mmcu,--section-start=.mmcu=910000 -o build/objects/main.elf source/main.c
+    Simulate the program
+    $ simavr -v -v -v -v -m atmega1284 -f 8000000 build/objects/main.elf
+    $ gtkwave build/results/lab2_trace.vcd
+
+
+with gdb:
+    Compile the program with the -g and -Og flags (debugging information and debugging optimizations)
+    $ avr-gcc -mmcu=atmega1284 -I/usr/csshare/pkgs/simavr/ -Iheader/ -D_SIMULATE_ -Wall -g -Og -Wl,--undefined=_mmcu,--section-start=.mmcu=910000 -o build/objects/main.elf source/main.c
+    Simulate the program again, this time pass in the -g flag for the interactive debugger.
+    $ simavr -v -v -v -v -g -m atmega1284 -f 8000000 build/objects/main.elf
+    In another terminal (in the same directory), start the debugger with the commands file
+    $ avr-gdb -x test/commands.gdb
+    Load the .elf file into the debugger so it knows the debug information
+    (gdb) file build/objects/main.elf
+    Reading symbols from build/objects/main.elf...done.
+    Add the remote target for the simulator and load
+    (gdb) target remote :1234
+    Add a break point at the top of the while(1). Your line number (:#) may differ
+    (gdb) break main.c:22
+    Breakpoint 1 at 0xae: file main.c, line 22
+    Set the debugger to display the values we’re concerned with:
+    (gdb) commands
+    Type commands for breakpoint(s) 1, one per line. 
+    End with a line saying just “end”.
+    >silent
+    >printPINA
+    >printPORTB
+    >end
+    (gdb)c
+    Now, in gdb, change the value PINA to 0xF0 to simulate input changing and continue several times. Note: in embedded systems it is typically a good time to run the loop several times to make sure the results are stable before inspecting them.
+    (gdb) setPINA 0xF0
+    (gdb) continue 5
+    (gdb) quit
+    gtkwave build/results/lab2_trace.vcd
