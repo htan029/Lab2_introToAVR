@@ -19,23 +19,22 @@ tests = [
     'steps': [ 
         {'inputs': [('PINA', 0x01)], 'iterations': 1 } 
         ],
-    'expected': [('PORTC', 0x01)],
+    'expected': [('PORTB', 0x01)],
     },
 
     {'description': 'test two.',
     'steps': [ 
-        {'inputs': [('PINA',0x00)], 'iterations': 1, 'expected': [('PORTC',0x00)]}, 
-        {'inputs': [('PINA',0x01)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
-        {'inputs': [('PINA',0x02)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
-        {'inputs': [('PINA',0x04)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
-        {'inputs': [('PINA',0x08)], 'iterations': 1}, 
+        {'inputs': [('PINA',0x00)], 'iterations': 1, 'expected': [('PORTB',0x00)]}, 
+        {'inputs': [('PINA',0x01)], 'iterations': 1, 'expected': [('PORTB',0x01)]},
+        {'inputs': [('PINA',0x02)], 'iterations': 1, 'expected': [('PORTB',0x00)]},
+        {'inputs': [('PINA',0x03)], 'iterations': 1}, 
         ],
-    'expected': [('PORTC',0x01)],
+    'expected': [('PORTB',0x00)],
     },
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
 # to be scoped at the function level (for static variables) if there are naming conflicts. The 
 # variables listed here will display everytime you hit (and stop at) a breakpoint
-watch = ['main::tempA','tempC']
+watch = ['main::tempA','PORTB']
 
