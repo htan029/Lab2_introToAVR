@@ -19,18 +19,18 @@ tests = [
     'steps': [ 
         {'inputs': [('PINA', 0x01)], 'iterations': 1 } 
         ],
-    'expected': [('PORTC', 0x01)],
+    'expected': [('PORTC', 0x03)],
     },
 
     {'description': 'test two.',
     'steps': [ 
-        {'inputs': [('PINA',0x00)], 'iterations': 1, 'expected': [('PORTC',0x00)]}, 
-        {'inputs': [('PINA',0x01)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
-        {'inputs': [('PINA',0x02)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
-        {'inputs': [('PINA',0x04)], 'iterations': 1, 'expected': [('PORTC',0x01)]},
+        {'inputs': [('PINA',0x00)], 'iterations': 1, 'expected': [('PORTC',0x04)]}, 
+        {'inputs': [('PINA',0x01)], 'iterations': 1, 'expected': [('PORTC',0x03)]},
+        {'inputs': [('PINA',0x02)], 'iterations': 1, 'expected': [('PORTC',0x03)]},
+        {'inputs': [('PINA',0x04)], 'iterations': 1, 'expected': [('PORTC',0x03)]},
         {'inputs': [('PINA',0x08)], 'iterations': 1}, 
         ],
-    'expected': [('PORTC',0x01)],
+    'expected': [('PORTC',0x03)],
     },
     ]
 

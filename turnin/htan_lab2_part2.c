@@ -27,6 +27,7 @@ int main(void) {
         tempC += (tempA & 0x02) >> 1;
         tempC += (tempA & 0x04) >> 2;
         tempC += (tempA & 0x08) >> 3;
+        tempC = 4 - tempC;
         PORTC = tempC;
     }
     return 0;
